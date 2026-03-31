@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RenneLux — Nail Studio Texas</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="/img/logo.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <style>
+    *,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --ink: #0E0C0B;
+  --ink-60: rgba(14, 12, 11, 0.6);
+  --ink-15: rgba(14, 12, 11, 0.1);
+  --white: #FFFFFF;
+  --off: #F8F5F0;
+  --rose: #C8503C;
+  --rose-lt: #F2E0DC;
+  --taupe: #BEA882;
+  --taupe-lt: #F5EFE6;
+  --line: rgba(14, 12, 11, 0.09);
+}
+
+body {
+  background: #6e0000;
+  color: var(--ink);
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CURSOR ── */
+#cur {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--rose);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width .2s, height .2s;
+}
+
+#cur-o {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
+
+body.h #cur {
+  width: 14px;
+  height: 14px;
+}
+
+body.h #cur-o {
+  width: 50px;
+  height: 50px;
+  border-color: var(--rose);
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 56px;
+  background: rgba(255, 255, 255, .93);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--line);
+  transition: box-shadow .3s;
+}
+
+nav.scrolled {
+  box-shadow: 0 1px 20px rgba(14, 12, 11, .06);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  flex: 1;
+}
+
+.nav-logo sup {
+  color: var(--rose);
+  letter-spacing: 0;
+  font-size: 10px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-links a {
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-60);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+.nav-end {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 24px;
+  background: var(--ink);
+  color: var(--white);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: none;
+  font-family: 'Syne', sans-serif;
+  transition: background .25s, transform .2s;
+  border: none;
+}
+
+.pill:hover {
+  background: var(--rose);
+  transform: translateY(-1px);
+}
+
+.pill .a {
+  transition: transform .2s;
+}
+
+.pill:hover .a {
+  transform: translateX(3px);
+}
+
+/* ── HERO ── */
+.hero {
+  padding-top: 70px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55% 45%;
+}
+
+.hero-l {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 56px;
+  border-right: 1px solid var(--line);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--rose);
+  margin-bottom: 32px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: var(--rose);
+}
+
+h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(54px, 6.2vw, 92px);
+  line-height: .96;
+  font-weight: 400;
+  letter-spacing: -.025em;
+}
+
+h1 em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+.hero-sub {
+  margin-top: 32px;
+  max-width: 400px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink-60);
+}
+
+.hero-btns {
+  margin-top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.ghost-btn {
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap .2s, color .2s;
+}
+
+.ghost-btn:hover {
+  gap: 16px;
+  color: var(--rose);
+}
+
+.kpis {
+  margin-top: 64px;
+  display: flex;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+}
+
+.kpi {
+  flex: 1;
+  padding-right: 28px;
+}
+
+.kpi+.kpi {
+  padding-left: 28px;
+  border-left: 1px solid var(--line);
+}
+
+.kpi-n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 40px;
+  line-height: 1;
+}
+
+.kpi-l {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-top: 6px;
+}
+
+/* Hero right */
+.hero-r {
+  position: relative;
+  overflow: hidden;
+  background: var(--off);
+}
+
+.hero-panels {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: 62% 38%;
+}
+
+.panel-main {
+  background: linear-gradient(150deg, #E0C0B8 0%, #C07060 45%, #6A2838 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255, 255, 255, .03) 40px, rgba(255, 255, 255, .03) 41px);
+}
+
+.panel-subs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(255, 255, 255, .15);
+}
+
+.panel-sub {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel-sub+.panel-sub {
+  border-left: 1px solid rgba(255, 255, 255, .12);
+}
+
+.sub-a {
+  background: linear-gradient(135deg, #C4A070, #826040);
+}
+
+.sub-b {
+  background: linear-gradient(135deg, #504058, #281820);
+}
+
+.panel-lbl {
+  position: absolute;
+  bottom: 14px;
+  left: 16px;
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .45);
+  font-weight: 500;
+}
+
+.float-stat {
+  position: absolute;
+  left: -24px;
+  bottom: 56px;
+  background: var(--white);
+  padding: 18px 22px;
+  border-left: 3px solid var(--rose);
+  box-shadow: 0 10px 36px rgba(14, 12, 11, .13);
+  min-width: 150px;
+  animation: floatY 4s ease-in-out infinite;
+}
+
+.fst-n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 26px;
+  color: var(--rose);
+  line-height: 1;
+}
+
+.fst-l {
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-top: 4px;
+}
+
+/* ── TICKER ── */
+.ticker {
+  height: 46px;
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--off);
+  display: flex;
+  align-items: center;
+}
+
+.ticker-t {
+  white-space: nowrap;
+  animation: ticker 26s linear infinite;
+}
+
+.ti {
+  font-size: 10px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-60);
+  padding: 0 32px;
+}
+
+.td {
+  color: var(--rose);
+}
+
+/* ── SECTION BASICS ── */
+section {
+  padding: 112px 56px;
+}
+
+.sec-ey {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--rose);
+  margin-bottom: 18px;
+}
+
+.sec-ey::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--rose);
+}
+
+.sec-h {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(36px, 4.2vw, 60px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+}
+
+.sec-h em {
+  font-style: italic;
+  color: var(--rose);
+}
+
+/* ── SERVICES ── */
+.svc-hd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+
+.svc-card {
+  background: var(--white);
+  padding: 48px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: background .3s;
+}
+
+.svc-card:hover {
+  background: var(--off);
+}
+
+.svc-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: var(--rose);
+  transition: width .4s ease;
+}
+
+.svc-card:hover::after {
+  width: 100%;
+}
+
+.svc-no {
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--taupe);
+  font-weight: 500;
+  margin-bottom: 28px;
+}
+
+.svc-ico {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 20px;
+  color: var(--rose);
+}
+
+.svc-nm {
+  font-family: 'Instrument Serif', serif;
+  font-size: 23px;
+  font-weight: 400;
+  margin-bottom: 12px;
+}
+
+.svc-ds {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-60);
+  margin-bottom: 24px;
+}
+
+.svc-pr {
+  font-size: 11px;
+  letter-spacing: .12em;
+  font-weight: 500;
+}
+
+.svc-pr span {
+  font-family: 'Instrument Serif', serif;
+  font-size: 21px;
+  font-weight: 400;
+  color: var(--rose);
+  margin-left: 6px;
+}
+
+/* ── PROCESS ── */
+.process {
+  background: var(--ink);
+  padding: 112px 56px;
+}
+
+.process .sec-ey {
+  color: var(--taupe);
+}
+
+.process .sec-ey::before {
+  background: var(--taupe);
+}
+
+.process .sec-h {
+  color: var(--white);
+}
+
+.process .sec-h em {
+  color: var(--taupe);
+}
+
+.steps-row {
+  margin-top: 72px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-left: 1px solid rgba(255, 255, 255, .07);
+}
+
+.step {
+  padding: 44px 36px;
+  border-right: 1px solid rgba(255, 255, 255, .07);
+  position: relative;
+}
+
+.step-bg-n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 56px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, .05);
+  line-height: 1;
+  position: absolute;
+  top: 28px;
+  right: 24px;
+}
+
+.step-dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, .18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+  font-size: 13px;
+  color: var(--taupe);
+}
+
+.step-t {
+  font-family: 'Instrument Serif', serif;
+  font-size: 21px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.step-d {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, .38);
+}
+
+/* ── GALLERY ── */
+.gal-hd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 52px;
+}
+
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 260px 260px;
+  gap: 4px;
+}
+
+.gi {
+  position: relative;
+  overflow: hidden;
+}
+
+.gi .gf {
+  width: 100%;
+  height: 100%;
+  transition: transform .55s ease;
+}
+
+.gi:hover .gf {
+  transform: scale(1.05);
+}
+
+.gi .glbl {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px 18px 16px;
+  background: linear-gradient(to top, rgba(14, 12, 11, .65), transparent);
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--white);
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity .3s, transform .3s;
+}
+
+.gi:hover .glbl {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gi.a {
+  grid-column: span 5;
+  grid-row: span 2;
+}
+
+.gi.b {
+  grid-column: span 4;
+}
+
+.gi.c {
+  grid-column: span 3;
+}
+
+.gi.d {
+  grid-column: span 3;
+}
+
+.gi.e {
+  grid-column: span 4;
+}
+
+.gi.f {
+  grid-column: span 5;
+}
+
+.gfc1 {
+  background: linear-gradient(148deg, #E4C0B5 0%, #C06858 55%, #702030 100%);
+}
+
+.gfc2 {
+  background: linear-gradient(145deg, #D0BEB0, #9A7868);
+}
+
+.gfc3 {
+  background: linear-gradient(145deg, #C4A468, #786038);
+}
+
+.gfc4 {
+  background: linear-gradient(145deg, #A8C4BE, #507870);
+}
+
+.gfc5 {
+  background: linear-gradient(145deg, #C0B0D0, #6848A0);
+}
+
+.gfc6 {
+  background: linear-gradient(145deg, #1A1410, #382416);
+}
+
+/* ── ABOUT ── */
+.about-wrap {
+  background: antiquewhite;
+  padding: 112px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 88px;
+  align-items: center;
+}
+
+.about-vis {
+  position: relative;
+}
+
+.about-img {
+  width: 94%;
+  aspect-ratio: 4/5;
+  background: linear-gradient(145deg, #D4ACA4 0%, #9E6050 50%, #542030 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 28px, rgba(255, 255, 255, .04) 28px, rgba(255, 255, 255, .04) 29px);
+}
+
+.about-badge {
+  position: absolute;
+  right: -20px;
+  bottom: 44px;
+  background: var(--ink);
+  color: var(--white);
+  padding: 22px 26px;
+  width: 148px;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(14, 12, 11, .2);
+}
+
+.ab-n {
+  font-family: 'Instrument Serif', serif;
+  font-size: 38px;
+  color: var(--rose);
+  line-height: 1;
+}
+
+.ab-l {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .45);
+  margin-top: 5px;
+}
+
+.about-body {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--ink-60);
+  margin: 22px 0 32px;
+}
+
+.about-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin-bottom: 44px;
+}
+
+.about-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink-60);
+}
+
+.about-list li::before {
+  content: '✦';
+  color: var(--rose);
+  font-size: 9px;
+  flex-shrink: 0;
+}
+
+.sig {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 28px;
+  color: var(--ink);
+}
+
+.sig-role {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  margin-top: 4px;
+}
+
+/* ── TESTIMONIALS ── */
+.testi-hd {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 60px;
+}
+
+.testi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+
+.tc {
+  background: var(--white);
+  padding: 44px 38px;
+  position: relative;
+  transition: background .3s;
+}
+
+.tc:hover {
+  background: var(--off);
+}
+
+.tc-q {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 72px;
+  line-height: .8;
+  color: var(--rose-lt);
+  margin-bottom: 14px;
+  user-select: none;
+}
+
+.stars {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 22px;
+}
+
+.st {
+  color: var(--rose);
+  font-size: 12px;
+}
+
+.tc-txt {
+  font-family: 'Instrument Serif', serif;
+  font-size: 17px;
+  line-height: 1.65;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+
+.tc-nm {
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.tc-hd {
+  font-size: 12px;
+  color: var(--taupe);
+  margin-top: 3px;
+}
+
+/* ── BOOKING ── */
+.booking {
+  background: var(--ink);
+  padding: 112px 56px;
+  display: grid;
+  grid-template-columns: 38% 56%;
+  gap: 150px;
+}
+
+.bk-l {
+  padding-right: 36px;
+  border-right: 1px solid rgba(255, 255, 255, .07);
+}
+
+.bk-l .sec-ey {
+  color: var(--taupe);
+}
+
+.bk-l .sec-ey::before {
+  background: var(--taupe);
+}
+
+.bk-h {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(40px, 5vw, 68px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -.02em;
+  margin-bottom: 28px;
+}
+
+.bk-h em {
+  font-style: italic;
+  color: var(--taupe);
+}
+
+.bk-sub {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, .38);
+  margin-bottom: 48px;
+  max-width: 320px;
+}
+
+.cinfo {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.crow {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.cico {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, .1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+}
+
+.clbl {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .28);
+}
+
+.cval {
+  font-size: 14px;
+  color: rgba(255, 255, 255, .65);
+  margin-top: 3px;
+}
+
+/* Form */
+.bk-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.frow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.fgrp {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.fgrp label {
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .28);
+  font-weight: 500;
+}
+
+.fgrp input,
+.fgrp select,
+.fgrp textarea {
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .09);
+  color: var(--white);
+  padding: 14px 16px;
+  font-size: 14px;
+  font-family: 'Syne', sans-serif;
+  outline: none;
+  cursor: none;
+  transition: border-color .25s, background .25s;
+  width: 100%;
+}
+
+.fgrp input:focus,
+.fgrp select:focus,
+.fgrp textarea:focus {
+  border-color: var(--taupe);
+  background: rgba(255, 255, 255, .08);
+}
+
+.fgrp input::placeholder {
+  color: rgba(255, 255, 255, .18);
+}
+
+.fgrp select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6' fill='none' stroke='%23BEA882' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-color: rgba(255, 255, 255, .05);
+}
+
+.fgrp select option {
+  background: #1A1410;
+}
+
+.fgrp textarea {
+  height: 90px;
+  resize: none;
+}
+
+.bk-btn {
+  margin-top: 6px;
+  background: var(--rose);
+  color: var(--white);
+  border: none;
+  padding: 17px 36px;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  cursor: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  transition: background .25s, transform .2s;
+}
+
+.bk-btn:hover {
+  background: #A83828;
+  transform: translateY(-2px);
+}
+
+.bk-btn .a {
+  transition: transform .2s;
+}
+
+.bk-btn:hover .a {
+  transform: translateX(4px);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  border-top: 1px solid rgba(255, 255, 255, .05);
+  padding: 68px 56px 36px;
+}
+
+.foot-top {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  gap: 44px;
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgba(255, 255, 255, .05);
+}
+
+.foot-brand {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.foot-brand sup {
+  color: var(--rose);
+  letter-spacing: 0;
+}
+
+.foot-tag {
+  font-size: 14px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, .32);
+  max-width: 220px;
+  margin-bottom: 28px;
+}
+
+.socs {
+  display: flex;
+  gap: 10px;
+}
+
+.soc {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255, 255, 255, .09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: .05em;
+  transition: border-color .2s, color .2s;
+}
+
+.soc:hover {
+  border-color: var(--rose);
+  color: var(--rose);
+}
+
+.foot-col h5 {
+  font-size: 10px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, .22);
+  font-weight: 500;
+  margin-bottom: 22px;
+}
+
+.foot-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.foot-col a {
+  font-size: 13px;
+  color: rgba(255, 255, 255, .45);
+  text-decoration: none;
+  transition: color .2s;
+}
+
+.foot-col a:hover {
+  color: var(--white);
+}
+
+.foot-bot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 28px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, .18);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes floatY {
+
+  0%,
+  100% {
+    transform: translateY(0)
+  }
+
+  50% {
+    transform: translateY(-9px)
+  }
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0)
+  }
+
+  to {
+    transform: translateX(-50%)
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px)
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0)
+  }
+}
+
+.rv {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+.rv.on {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rv.d1 {
+  transition-delay: .1s
+}
+
+.rv.d2 {
+  transition-delay: .2s
+}
+
+.rv.d3 {
+  transition-delay: .3s
+}
+
+.rv.d4 {
+  transition-delay: .4s
+}
+
+/* initial hero animations */
+.h-anim {
+  animation: fadeUp .7s ease both;
+}
+
+.ha1 {
+  animation-delay: .1s
+}
+
+.ha2 {
+  animation-delay: .25s
+}
+
+.ha3 {
+  animation-delay: .4s
+}
+
+.ha4 {
+  animation-delay: .55s
+}
+
+.ha5 {
+  animation-delay: .7s
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px) {
+  nav {
+    padding: 0 20px
+  }
+
+  .nav-links {
+    display: none
+  }
+
+  section,
+  .process,
+  .about-wrap,
+  .booking,
+  footer {
+    padding-left: 20px;
+    padding-right: 20px
+  }
+
+  .hero {
+    grid-template-columns: 1fr
+  }
+
+  .hero-r {
+    display: none
+  }
+
+  .hero-l {
+    padding: 80px 20px 60px
+  }
+
+  .svc-grid {
+    grid-template-columns: 1fr
+  }
+
+  .steps-row {
+    grid-template-columns: 1fr 1fr
+  }
+
+  .gal-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 200px)
+  }
+
+  .gi.a,
+  .gi.b,
+  .gi.c,
+  .gi.d,
+  .gi.e,
+  .gi.f {
+    grid-column: span 1;
+    grid-row: span 1
+  }
+
+  .about-wrap {
+    grid-template-columns: 1fr;
+    gap: 52px
+  }
+
+  .about-badge {
+    right: 0
+  }
+
+  .testi-grid {
+    grid-template-columns: 1fr
+  }
+
+  .booking {
+    grid-template-columns: 1fr
+  }
+
+  .bk-l {
+    padding-right: 0;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, .07);
+    padding-bottom: 44px
+  }
+
+  .foot-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 28px
+  }
+
+  .frow {
+    grid-template-columns: 1fr
+  }
+}
+
+  </style>
+
+  <div id="cur"></div>
+  <div id="cur-o"></div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a class="nav-logo" href="#">RenneLuxNails<sup>®</sup></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">Studio</a>
+      <a href="#booking">Contact</a>
+    </div>
+    <div class="nav-end">
+      <a class="pill" href="#booking">Book Appointment <span class="a">→</span></a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-l">
+      <p class="eyebrow h-anim ha1">Texas Premier Nail Studio</p>
+      <h1 class="h-anim ha2">Nails Crafted<br>With <em>Precision.</em></h1>
+      <p class="hero-sub h-anim ha3">RenneLuxNails Precision-engineered nail artistry. Where biological texture meets
+        industrial gloss..</p>
+      <div class="hero-btns h-anim ha4">
+        <a class="pill" href="#booking">Book a Session <span class="a">→</span></a>
+        <a class="ghost-btn" href="#gallery">View Our Work →</a>
+      </div>
+      <div class="kpis h-anim ha5">
+        <div class="kpi">
+          <div class="kpi-n">5+</div>
+          <div class="kpi-l">Years Active</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-n">2K+</div>
+          <div class="kpi-l">Clients Served</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-n">200+</div>
+          <div class="kpi-l">Design Styles</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-r">
+      <div class="hero-panels">
+        <div class="panel-main"><img src="/img/ii.jpg" style="width: -webkit-fill-available;">
+          <span class="panel-lbl">Signature Gel</span>
+        </div>
+        <div class="panel-subs" style="
+        width: -webkit-fill-available" ;>
+          <div class="panel-sub sub-a"><img src="/img/jbk.jpg">
+            <span class="panel-lbl">Chrome Finish</span>
+          </div>
+          <div class="panel-sub sub-b"><img src="/img/nail.jpg" style="width: 12pc;
+            margin-block-end: auto;">
+            <span class="panel-lbl">Nail Art</span>
+          </div>
+        </div>
+      </div>
+      <div class="float-stat">
+        <div class="fst-n">98%</div>
+        <div class="fst-l">Client Satisfaction</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <div class="ticker-t">
+      <span class="ti">Gel Manicure</span><span class="td">✦</span><span class="ti">Acrylic Extensions</span><span
+        class="td">✦</span><span class="ti">Nail Art</span><span class="td">✦</span><span class="ti">Chrome
+        Finish</span><span class="td">✦</span><span class="ti">Ombre Nails</span><span class="td">✦</span><span
+        class="ti">Press-On Sets</span><span class="td">✦</span><span class="ti">Luxury Pedicure</span><span
+        class="td">✦</span><span class="ti">Nail Repair</span><span class="td">✦</span>
+      <span class="ti">Gel Manicure</span><span class="td">✦</span><span class="ti">Acrylic Extensions</span><span
+        class="td">✦</span><span class="ti">Nail Art</span><span class="td">✦</span><span class="ti">Chrome
+        Finish</span><span class="td">✦</span><span class="ti">Ombre Nails</span><span class="td">✦</span><span
+        class="ti">Press-On Sets</span><span class="td">✦</span><span class="ti">Luxury Pedicure</span><span
+        class="td">✦</span><span class="ti">Nail Repair</span><span class="td">✦</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="svc-hd rv">
+      <div>
+        <p class="sec-ey">What We Offer</p>
+        <h2 class="sec-h">Our <em>Services</em></h2>
+      </div>
+      <a class="ghost-btn" href="#booking">Full Price Menu →</a>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card rv d1" style="background: antiquewhite" ;><img src="/img/gel manicure.jpg"
+          style="width: -webkit-fill-available;">
+        <div class="svc-no">01</div>
+        <svg class="svc-ico" viewBox="0 0 40 40" fill="none">
+          <path d="M20 5C11.7 5 5 11.7 5 20s6.7 15 15 15 15-6.7 15-15S28.3 5 20 5z" stroke="currentColor"
+            stroke-width="1.5" />
+          <path d="M13 20h14M20 13v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".45" />
+        </svg>
+        <h3 class="svc-nm">Gel Manicure</h3>
+        <p class="svc-ds">Chip-free gel polish lasting up to 3 weeks. Includes nail shaping, cuticle care, and hand
+          massage.</p>
+        <p class="svc-pr">From<span>$65</span></p>
+      </div>
+      <div class="svc-card rv d2" style="background: antiquewhite" ;><img src="/img/Custom Press-Ons.jpg"
+          style="width: -webkit-fill-available;">
+        <div class="svc-no">02</div>
+        <svg class="svc-ico" viewBox="0 0 40 40" fill="none">
+          <path d="M20 34V8M13 34L20 8M27 34L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+          <path d="M8 34h24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".45" />
+        </svg>
+        <h3 class="svc-nm">Acrylic Extensions</h3>
+        <p class="svc-ds">Sculpted acrylics in any shape — coffin, almond, stiletto, or square. Built to impress and
+          last.</p>
+        <p class="svc-pr">From<span>$30</span></p>
+      </div>
+      <div class="svc-card rv d3" style="background: antiquewhite" ;><img src="/img/Bespoke Nail ArtBespoke Nail Art.jpg"
+          style="width: -webkit-fill-available;height: 31.2pc;">
+        <div class="svc-no">03</div>
+        <svg class="svc-ico" viewBox="0 0 40 40" fill="none">
+          <path d="M8 20C8 12 20 6 32 12C32 28 20 36 8 28C8 25 8 22 8 20Z" stroke="currentColor" stroke-width="1.5" />
+          <circle cx="20" cy="18" r="5" stroke="currentColor" stroke-width="1.2" opacity=".45" />
+        </svg>
+        <h3 class="svc-nm">Bespoke Nail Art</h3>
+        <p class="svc-ds">Hand-painted florals, 3D gems, abstracts, or character art. Bring a reference or let us
+          design.</p>
+        <p class="svc-pr">From<span>$80</span></p>
+      </div>
+      <div class="svc-card rv d1" style="background: antiquewhite" ;><img src="/img/Chrome & Ombre.jpg"
+          style="width: -webkit-fill-available;">
+        <div class="svc-no">04</div>
+        <svg class="svc-ico" viewBox="0 0 40 40" fill="none">
+          <ellipse cx="20" cy="20" rx="13" ry="7" stroke="currentColor" stroke-width="1.5" />
+          <ellipse cx="20" cy="20" rx="7" ry="3.5" stroke="currentColor" stroke-width="1.2" opacity=".45" />
+          <ellipse cx="20" cy="20" rx="2" ry="1" fill="currentColor" opacity=".35" />
+        </svg>
+        <h3 class="svc-nm">Chrome & Ombre</h3>
+        <p class="svc-ds">Mirror-chrome powder and gradient fades. Finishes that catch every light in every room.</p>
+        <p class="svc-pr">From<span>$60</span></p>
+      </div>
+      <div class="svc-card rv d2" style="background: antiquewhite" ;><img src="/img/Acrylic Extensions.jpg"
+          style="width: -webkit-fill-available;">
+        <div class="svc-no">05</div>
+        <svg class="svc-ico" viewBox="0 0 40 40" fill="none">
+          <rect x="10" y="12" width="20" height="22" rx="2" stroke="currentColor" stroke-width="1.5" />
+          <path d="M14 22h12M14 28h8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".45" />
+          <path d="M16 8h8v4h-8z" stroke="currentColor" stroke-width="1.2" />
+        </svg>
+        <h3 class="svc-nm">Custom Press-Ons</h3>
+        <p class="svc-ds">Hand-crafted press-on sets measured to fit. Reusable, fully personalised to your style.</p>
+        <p class="svc-pr">From<span>$80</span></p>
+      </div>
+      <div class="svc-card rv d3" style="background: antiquewhite" ;><img src="/img/pedi.jpg"
+          style="width: -webkit-fill-available;height: 36.7pc;">
+        <div class="svc-no">06</div>
+        <svg class="svc-ico" viewBox="0 0 40 40" fill="none">
+          <path d="M20 34C20 34 6 24 6 14C6 9 12 6 20 10C28 6 34 9 34 14C34 24 20 34 20 34Z" stroke="currentColor"
+            stroke-width="1.5" />
+          <path d="M20 16v6M17 19h6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity=".45" />
+        </svg>
+        <h3 class="svc-nm">Luxury Pedicure</h3>
+        <p class="svc-ds">Full foot ritual — soak, scrub, massage, cuticle work, and gel polish. A complete treat.</p>
+        <p class="svc-pr">From<span>$70</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="rv">
+      <p class="sec-ey">How It Works</p>
+      <h2 class="sec-h">Your <em>Experience</em></h2>
+    </div>
+    <div class="steps-row">
+      <div class="step rv d1">
+        <div class="step-bg-n">01</div>
+        <div class="step-dot">📅</div>
+        <h3 class="step-t">Book Online</h3>
+        <p class="step-d">Choose your service, pick a time that suits you. We confirm within 2 hours.</p>
+      </div>
+      <div class="step rv d2">
+        <div class="step-bg-n">02</div>
+        <div class="step-dot">💬</div>
+        <h3 class="step-t">Share Your Vision</h3>
+        <p class="step-d">Drop an inspo photo or describe your ideal look. Our artists review it before your
+          appointment.</p>
+      </div>
+      <div class="step rv d3">
+        <div class="step-bg-n">03</div>
+        <div class="step-dot">✦</div>
+        <h3 class="step-t">The Appointment</h3>
+        <p class="step-d">Arrive to a clean, calm studio. We take our time — no rush, no shortcuts.</p>
+      </div>
+      <div class="step rv d4">
+        <div class="step-bg-n">04</div>
+        <div class="step-dot">💅</div>
+        <h3 class="step-t">Leave Stunning</h3>
+        <p class="step-d">Walk out with nails that turn heads. Free correction included within 5 days.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="gal-hd rv">
+      <div>
+        <p class="sec-ey">Portfolio</p>
+        <h2 class="sec-h">Featured <em>Work</em></h2>
+      </div>
+      <a class="ghost-btn" href="#">See Full Gallery →</a>
+    </div>
+    <div class="gal-grid rv">
+      <div class="gi a"><img src="/img/ccx.jpg" style="width: -webkit-fill-available;">
+        <div class="gf gfc1"></div>
+        <div class="glbl">Rosé Chrome Set</div>
+      </div>
+      <div class="gi b"><img src="/img/jbk.jpg" style="width: -webkit-fill-available;">
+        <div class="gf gfc2"></div>
+        <div class="glbl">Nude French Tip</div>
+      </div>
+      <div class="gi c"><img src="/img/jj.jpg" style="width: -webkit-fill-available;">
+        <div class="gf gfc3"></div>
+        <div class="glbl">Gold Foil Gel</div>
+      </div>
+      <div class="gi d"><img src="/img/kk.jpg" style="width: -webkit-fill-available;">
+        <div class="gf gfc4"></div>
+        <div class="glbl">Sage Minimalist</div>
+      </div>
+      <div class="gi e"><img src="/img/y.jpg" style="width: -webkit-fill-available;">
+        <div class="gf gfc5"></div>
+        <div class="glbl">Violet Ombre</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <div class="about-wrap" id="about">
+    <div class="about-vis rv">
+      <div class="about-img">
+        <div class=""></div><img src="/img/jbk.jpg" style=" width: -webkit-fill-available;">
+        <svg viewBox="0 0 400 500" fill="none" style="inset:0;width:100%;height:100%;opacity:.15"><text x="50%" y="55%"
+            text-anchor="middle" dominant-baseline="middle" font-family="Instrument Serif,serif" font-style="italic"
+            font-size="200" fill="white">L</text></svg>
+      </div>
+      <div class="about-badge">
+        <div class="ab-n">5★</div>
+        <div class="ab-l">Google Rated</div>
+      </div>
+    </div>
+    <div class="rv d1">
+      <p class="sec-ey">About the Studio</p>
+      <h2 class="sec-h" style="margin-bottom:20px">Where Craft<br>Meets <em>Care</em></h2>
+      <p class="about-body">RenneLuxNails was founded in Texas with one goal: deliver a nail experience that respects
+        your time, your style, and your nails' health. We use only premium, non-toxic products — nothing less.</p>
+      <p class="about-body">Every artist on our team holds a professional certification and trains continuously. We
+        sterilise all tools between every client, every time — no exceptions.</p>
+      <ul class="about-list">
+        <li>Non-toxic, premium-grade products only</li>
+        <li>Full tool sterilisation between every client</li>
+        <li>Free correction within 5 days of appointment</li>
+        <li>Private, appointment-only studio</li>
+      </ul>
+      <div class="sig">Tiffany Renne</div>
+      <div class="sig-role">Founder & Head Nail Artist</div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <section>
+    <div class="testi-hd rv">
+      <div>
+        <p class="sec-ey">Client Reviews</p>
+        <h2 class="sec-h">What They <em>Say</em></h2>
+      </div>
+      <a class="ghost-btn" href="#">All Reviews →</a>
+    </div>
+    <div class="testi-grid">
+      <div class="tc rv d1" style="background: antiquewhite;">
+        <div class="tc-q">"</div>
+        <div class="stars"><span class="st">★</span><span class="st">★</span><span class="st">★</span><span
+            class="st">★</span><span class="st">★</span></div>
+        <p class="tc-txt">The precision is unlike anything I've experienced. Every detail is considered, every angle
+          perfect. It's not a manicure — it's engineering.</p>
+        <div class="tc-nm">Danielle Red.</div>
+        <div class="tc-hd">@danielle.r</div>
+      </div>
+      <div class="tc rv d2" style="background: antiquewhite;">
+        <div class="tc-q">"</div>
+        <div class="stars"><span class="st">★</span><span class="st">★</span><span class="st">★</span><span
+            class="st">★</span><span class="st">★</span></div>
+        <p class="tc-txt">They treat every appointment like a design consultation. The custom chrome work they did for
+          my editorial shoot was absolutely next level.</p>
+        <div class="tc-nm">Stephany kaysha</div>
+        <div class="tc-hd">@stepany.kay</div>
+      </div>
+      <div class="tc rv d3" style="background: antiquewhite;">
+        <div class="tc-q">"</div>
+        <div class="stars"><span class="st">★</span><span class="st">★</span><span class="st">★</span><span
+            class="st">★</span><span class="st">★</span></div>
+        <p class="tc-txt">I've been to studios across Paris and New York. Nothing compares to the architectural approach
+          here. My nails are my statement pieces.</p>
+        <div class="tc-nm">Amy B.</div>
+        <div class="tc-hd">@prettyamy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking" id="booking">
+    <div class="bk-l rv">
+      <p class="sec-ey">Get in Touch</p>
+      <h2 class="bk-h">Book Your<br><em>Appointment</em></h2>
+      <p class="bk-sub">Slots fill quickly. Reserve your chair and let us create something you'll love.</p>
+
+    </div>
+    <div class="rv d1">
+      <div class="cinfo">
+        <div class="crow">
+          <div class="cico">📍</div>
+          <div>
+            <div class="clbl">Location</div>
+            <div class="cval">Sugar Land, Texas</div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="cico">📞</div>
+          <div>
+            <div class="clbl">Phone / WhatsApp</div>
+            <div class="cval"> +1 346-863-3672 </div>
+          </div>
+        </div>
+        <div class="crow">
+          <div class="cico">🕐</div>
+          <div>
+            <div class="clbl">Studio Hours</div>
+            <div class="cval">Mon–Sat 9AM–7PM · Sun 11AM–5PM</div>
+          </div>
+        </div>
+      </div>
+      <!-- <form class="bk-form" onsubmit="doBook(event)">
+        <div class="frow">
+          <div class="fgrp"><label>First Name</label><input type="text" placeholder="Melisa"></div>
+          <div class="fgrp"><label>Last Name</label><input type="text" placeholder="Brett"></div>
+        </div>
+        <div class="fgrp"><label>Phone / WhatsApp</label><input type="tel" placeholder="+1 801 000 0000"></div>
+        <div class="fgrp">
+          <label>Service</label>
+          <select>
+            <option value="">Select a service…</option>
+            <option>Gel Manicure — from $65</option>
+            <option>Acrylic Extensions — from $30</option>
+            <option>Bespoke Nail Art — from $80</option>
+            <option>Chrome & Ombre — from $60</option>
+            <option>Custom Press-Ons — from $80</option>
+            <option>Luxury Pedicure — from $70</option>
+          </select>
+        </div>
+        <div class="frow">
+          <div class="fgrp"><label>Preferred Date</label><input type="date"></div>
+          <div class="fgrp">
+            <label>Preferred Time</label>
+            <select>
+              <option>9:00 AM</option>
+              <option>10:00 AM</option>
+              <option>11:00 AM</option>
+              <option>12:00 PM</option>
+              <option>1:00 PM</option>
+              <option>2:00 PM</option>
+              <option>3:00 PM</option>
+              <option>4:00 PM</option>
+              <option>5:00 PM</option>
+              <option>6:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <div class="fgrp"><label>Notes / Inspo</label><textarea
+            placeholder="Describe your ideal look or share a reference image link…"></textarea></div>
+        <button type="submit" class="bk-btn" id="bkBtn">Request Appointment <span class="a">→</span></button>
+      </form> -->
+      -->
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-top">
+      <div>
+        <div class="foot-brand">RenneLuxNails<sup>®</sup></div>
+        <p class="foot-tag">Premium nail artistry in the heart of Texas. Where every detail is intentional.</p>
+        <div class="socs">
+          <a class="soc" href="https://www.instagram.com/COLORZ713" style="background-color: red;color: white;">IG</a>
+          <a class="soc" href="https://www.snapchat.com/@colorz713"
+            style="background-color: yellow;color: white;">SN</a>
+          <a class="soc" href="https://www.tiktok.com/@COLORZ713" style="background-color: black;color: white;">TK</a>
+          <a class="soc" href="https://www.facebook.com/MZLILBIT152" style="background-color: blue;color: white;">FB</a>
+          <a class="soc" href="mailto:Colorz713htx@gmail.com"
+            style="background-color: rgb(133, 40, 40);color: white;">GM</a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#">Gel Manicure</a></li>
+          <li><a href="#">Acrylic Extensions</a></li>
+          <li><a href="#">Nail Art</a></li>
+          <li><a href="#">Chrome & Ombre</a></li>
+          <li><a href="#">Pedicure</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Studio</h5>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Gallery</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#">Sugar Land, Texas</a></li>
+          <li><a href="#">Mon–Sat 9AM–7PM</a></li>
+          <li><a href="#">Sun 11AM–5PM</a></li>
+          <li><a href="#">Book Appointment</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© 2026 RenneLuxNails. All rights reserved.</span>
+      <span>Texas, USA</span>
+    </div>
+  </footer>
+
+</body>
+<script>
+  // Cursor
+  const cur = document.getElementById('cur'), co = document.getElementById('cur-o');
+  let mx = 0, my = 0, ox = 0, oy = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px'; });
+  (function l() { ox += (mx - ox) * .11; oy += (my - oy) * .11; co.style.left = ox + 'px'; co.style.top = oy + 'px'; requestAnimationFrame(l); })();
+  document.querySelectorAll('a,button,.svc-card,.tc,.gi').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('h'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('h'));
+  });
+  // Nav
+  window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', scrollY > 40));
+  // Reveal
+  const io = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) x.target.classList.add('on'); }), { threshold: .08 });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+  // Book
+  function doBook(e) {
+    e.preventDefault();
+    const b = document.getElementById('bkBtn');
+    b.innerHTML = 'Appointment Requested ✓';
+    b.style.background = '#3A7A58';
+    setTimeout(() => { b.innerHTML = 'Request Appointment <span class="a">→</span>'; b.style.background = ''; }, 3500);
+  }
+  </script>
+
+</html>
